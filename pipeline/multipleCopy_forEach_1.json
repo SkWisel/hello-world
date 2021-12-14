@@ -63,15 +63,6 @@
 					},
 					"firstRowOnly": false
 				}
-			},
-			{
-				"name": "Wait1",
-				"type": "Wait",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 30
-				}
 			}
 		],
 		"folder": {

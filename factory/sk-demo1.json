@@ -1,0 +1,9 @@
+{
+	"name": "sk-demo1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "10035e4b-3567-4c45-95f3-2eea0da4b368",
+		"tenantId": "20651467-b3e6-4b1d-94ac-5662b0eb5fe9"
+	}
+}

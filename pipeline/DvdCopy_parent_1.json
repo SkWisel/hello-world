@@ -1,0 +1,86 @@
+{
+	"name": "DvdCopy_parent_1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup2",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "PostgreSqlSource",
+						"query": "select table_schema as schema,\ntable_name as table\nfrom information_schema.tables\nwhere table_schema='public' and table_type='BASE TABLE';"
+					},
+					"dataset": {
+						"referenceName": "dvd_dynamic_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"Schema": "placeholder",
+							"Table": "placeholder"
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup2').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "DvdCopy_Child_1",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Schema": {
+										"value": "@item().schema",
+										"type": "Expression"
+									},
+									"Table": {
+										"value": "@item().table",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "Practice1"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-14T09:12:43Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

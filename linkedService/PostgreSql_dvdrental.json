@@ -1,0 +1,16 @@
+{
+	"name": "PostgreSql_dvdrental",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "PostgreSql",
+		"typeProperties": {
+			"connectionString": "host=::1;port=5432;database=dvdrental;uid=postgres;encryptionmethod=0",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4MjkwY2E2Ny1kNmFlLTRhM2ItYWE5My1mNmJkZWI4YjQwMDciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "selfhost-ir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
